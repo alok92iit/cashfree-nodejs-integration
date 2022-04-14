@@ -32,13 +32,13 @@ const BroomeesClientData = sequelize.define('transactions', {
 });
 
 
- BroomeesClientData.sync()
-    .then(() => {
-        console.log('Table Created!');
-    })
-    .catch((err) => {
-        console.log('Table not created', err);
-    });
+//  BroomeesClientData.sync()
+//     .then(() => {
+//         console.log('Table Created!');
+//     })
+//     .catch((err) => {
+//         console.log('Table not created', err);
+//     });
 
 
 module.exports = BroomeesClientData;
