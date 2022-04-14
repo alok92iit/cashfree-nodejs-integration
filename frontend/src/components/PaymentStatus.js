@@ -7,18 +7,37 @@ const PaymentStatus = ({orderToken,setorderDetail}) => {
     const navigate =useNavigate()
     console.log(orderToken)
     const components= ["order-details", "card", "upi", "app", "netbanking", "paylater", "credicardemi"]
-    const cbs = (orderdData) => {
-  
+    const cbs = async(orderdData) => {
+      orderdData.orderToken=orderToken
       if (orderdData.order && orderdData.order.status === 'PAID') {
         console.log(orderdData)
         setorderDetail(orderdData)
+        await axios.post("http://localhost:5566/create",orderdData)
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          return err;
+        });
         navigate("/transectionDetial")
       }
     };
-    const cbf = (orderdData) => {
+    const cbf =async (orderdData) => {
       console.log(orderdData)
+      orderdData.orderToken=orderToken
+      if (orderdData) {
+        console.log(orderdData)
+        setorderDetail(orderdData)
+        await axios.post("http://localhost:5566/create",orderdData)
+        .then((data) => {
+          return data;
+        })
+        .catch((err) => {
+          return err;
+        })
       navigate("/");
-      return 
+      return
+      } 
     };
    
     const renderDropin = async() => {

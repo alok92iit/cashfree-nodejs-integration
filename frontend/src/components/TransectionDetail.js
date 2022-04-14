@@ -4,24 +4,35 @@ import React, { useEffect } from "react";
 const TransectionDetail = ({orderDetail}) => {
    console.log(orderDetail)
   const fetchTransectionDetails = async () => {
-    const response = await axios.post("http://localhost:5566/payment", orderDetail)
-      .then((data) => {
-        return data;
-      })
-      .catch((err) => {
-        return err;
-      });
-    console.log(response);
-    return response;
+              if(orderDetail!=={}){
+                    const response = await axios.post("http://localhost:5566/payment", orderDetail)
+                    .then((data) => {
+                      return data;
+                    })
+                    .catch((err) => {
+                      return err;
+                    });
+                    return response;
+                  }
+              
+                 // console.log(response);
+   
   };
 
   useEffect(() => {
-    fetchTransectionDetails();
+  //  fetchTransectionDetails()
   }, []);
 
   return (
     <div className="container">
-    <table className="ui  green table">
+    {
+    orderDetail? 
+    <center>
+   <h2>Payment Status</h2>
+   <p>Oops....You did not Purchase Anything Yet  !!!</p>
+ </center>
+
+:<table className="ui  green table">
     <thead>
       <tr>
          <h2>Payment Sucessful</h2>
@@ -46,6 +57,8 @@ const TransectionDetail = ({orderDetail}) => {
       </tr>
     </tbody>
  </table>
+
+}
  </div>
   );
 };
