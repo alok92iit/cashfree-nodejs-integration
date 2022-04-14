@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 
 import { useNavigate } from "react-router-dom";
 const Forms = ({setToken}) => {
@@ -16,27 +16,22 @@ const Forms = ({setToken}) => {
         const email       =emailInputRef.current.value.trim()
         const phoneNumber =phoneNumberInputRef.current.value.trim()
         try{
-              console.log({orderAmount,name,email,phoneNumber})
               await axios.post("http://localhost:5566/create" ,{orderAmount,name,email,phoneNumber})
               .then((data)=>{
-                console.log(data.data)
+
                 navigate("/casfree/result")
                 setToken(data.data)
               }).catch((err)=>{
                 console.log(err)
               })
-             // navigate("/casfree/result")
-             // setToken(response.data)
-             // console.log(response.data)
+
             }
         catch(err){
           console.log(err);
           return
         }
       }
-// useEffect(()=>{
-//   inputHandler()
-// },[])
+
     return (
     <form className="mainForm ui form container" > 
       <div className="field">

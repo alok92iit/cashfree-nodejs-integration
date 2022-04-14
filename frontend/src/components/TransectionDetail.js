@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 
 const TransectionDetail = ({orderDetail}) => {
-   console.log(orderDetail)
+
   const fetchTransectionDetails = async () => {
               if(orderDetail!=={}){
                     const response = await axios.post("http://localhost:5566/payment", orderDetail)
